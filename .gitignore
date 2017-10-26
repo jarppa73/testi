@@ -1,0 +1,34 @@
+# Temp files
+*~
+\#*#
+# Ansible
+*.retry
+# Log files
+*.log
+# Compiled binaries and packages
+target/
+*.iml
+*.tgz
+*.zip
+*.tar.gz
+*.pyc
+*.jar
+# Maven stuff
+local-repository/
+local-maven-repo/
+.mvn/
+mvnw
+mvnw.cmd
+# Eclipse
+.classpath
+.project
+.settings
+# IntelliJ IDEA
+.idea
+*.iws
+*.iml
+*.ipr
+# Visual Studio Code
+.vscode
+# Mac files
+.DS_Store

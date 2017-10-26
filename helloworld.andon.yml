@@ -1,0 +1,37 @@
+# helloworld.andon.yml
+pipelines:
+  HelloWorld:
+    environment_variables:
+    group: MyPipelines
+    materials:
+      integrations:  # this is the name of material
+        # says about type of material and url at once
+        git: https://github.com/jarppa73/helloWorld.git
+        branch: master
+        destination: hello
+    stages:
+      - build: # name of stage	
+          jobs:
+            build_component: # name of the job
+              andon: # andon job configuration
+                image: "andon.artifactorypro.shared.pub.tds.tieto.com/andon-gocd-agent-java8-maven3:v17.10.0" # elastic agent image
+                #sonarqube: true
+              tasks:
+               - exec: # Printout env variables
+                   run_if: passed
+                   command: bash
+                   arguments:
+                    - "-c"
+                    - "echo Hei me lennetaan"
+               - exec: # build
+                   run_if: passed
+                   command: bash
+                   arguments:
+                    - "-c"
+                    - "pwd&&ls -ltr&&cd hello&&ls -ltr&&mvn clean install"
+               - exec: # Run java program
+                   run_if: passed
+                   command: bash
+                   arguments:
+                    - "-c"
+                    - "pwd&&ls -ltr&&cd hello/target&&ls -ltr&&java -jar MyHelloWorld-1.0-SNAPSHOT-null-jar-with-dependencies.jar"
